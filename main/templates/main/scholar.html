@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Links</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .scholar-btn{
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            border: 2px solid #69C9D0;
+        }
+        .scholar-btn a{
+            text-decoration: none;
+        }
+        
+        .large-icon{
+            font-size: 20px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <button class="scholar-btn">
+            <i class="fa-solid fa-house large-icon"></i>
+            <a class="" href="{% url 'main:home' %}">Home</a>
+        </button>
+        <h1 class="text-center mb-5">Scholarship Links</h1>
+        <div class="row">
+            {% for scholarship in scholarships %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="{{ scholarship.image.url }}" class="card-img-top" alt="{{ scholarship.institute_name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ scholarship.institute_name }}</h5>
+                        <p class="card-text">
+                            <strong>Country:</strong> {{ scholarship.get_country_display }}<br>
+                            <strong>State:</strong> {{ scholarship.state }}<br>
+                            <strong>Organized By:</strong> {{ scholarship.organized_by }}
+                        </p>
+                        <a href="{{ scholarship.link }}" class="btn btn-primary" target="_blank">Learn More</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created at: {{ scholarship.created_at }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

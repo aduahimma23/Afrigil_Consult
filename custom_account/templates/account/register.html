@@ -1,0 +1,84 @@
+{% extends 'account/base.html' %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+{% load static %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card form-container">
+                    <div class="card-header text-center">
+                        <i class="fa fa-3x fa-user-plus"></i>
+                        <h3 class="text-white">Sign Up</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'account:signup' %}">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label for="id_username" class="col-sm-3 col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text"class="form-control" id="id_username" name="username" placeholder="username">
+                                    {% if form.username.errors %}
+                                        <div class="text-danger">{{ form.username.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="id_email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="id_email" name="email" placeholder="afri@gmail.com">
+                                    {% if form.email.errors %}
+                                        <div class="text-danger">{{ form.email.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="id_password" class="col-sm-3 col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="id_password" name="password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text password-toggle" onclick="togglePasswordVisibility('id_password', 'togglePasswordIcon')">
+                                                <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% if form.password.errors %}
+                                        <div class="text-danger">{{ form.password.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                
+                            <div class="form-group row">
+                                <label for="id_confirm_password" class="col-sm-3 col-form-label">Confirm Password</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="id_confirm_password" name="confirm_password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text password-toggle" onclick="togglePasswordVisibility('id_confirm_password', 'toggleConfirmPasswordIcon')">
+                                                <i class="fas fa-eye" id="toggleConfirmPasswordIcon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% if form.confirm_password.errors %}
+                                        <div class="text-danger">{{ form.confirm_password.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="btn-class">
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <span class="text-white">I have an account already? <a href="{% url 'account:login' %}">LogIn</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

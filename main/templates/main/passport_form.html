@@ -1,0 +1,121 @@
+{% extends "main/base.html" %}
+{% block title %}Passport Form{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white">Apply for a Passport</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Passport</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl">
+    <div class="center-form">
+        <div class="container">
+            <h1 class="text-center">Passport Application Form</h1>
+            <form method="post">
+                {% csrf_token %}
+                <hr class="custome-hr">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Applicant Information</legend>
+                            {{ applicant_form.as_p }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Father Information</legend>
+                            {{ father_form.as_p }}
+                        </fieldset>
+                    </div>
+                </div>
+
+                <hr class="custome-hr">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Mother Information</legend>
+                            {{ mother_form.as_p }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Grandparent Information</legend>
+                            {{ grandparent_form.as_p }}
+                        </fieldset>
+                    </div>
+                </div>
+
+                <hr class="custome-hr">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Guarantor Information</legend>
+                            {{ guarantor_form.as_p }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Declaration Information</legend>
+                            {{ declaration_form.as_p }}
+                        </fieldset>
+                    </div>
+                </div>
+
+                <hr class="custome-hr">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Passport Consent Information</legend>
+                            {{ passportconsent_form.as_p }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Passport Application Information</legend>
+                            {{ passportapplication_form.as_p }}
+                        </fieldset>
+                    </div>
+                </div>
+
+                <hr class="custome-hr">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Document Information</legend>
+                            {{ document_form.as_p }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Witness Information</legend>
+                            {{ witness_form.as_p }}
+                        </fieldset>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

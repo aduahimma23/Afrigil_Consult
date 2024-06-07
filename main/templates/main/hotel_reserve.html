@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+{% block title %}Hotel Reservation{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-3 text-white animated slideInDown">Hotel Reservation</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Hotel Reservation</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid birth-cert">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        {% for field in hotel_reserve_form %}
+                            <div class="col-md-4">
+                                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "main/base.html" %}
+{% block title %}Services{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white">Afrigil Services</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Services</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+            <h1 class="mb-5">Our Services</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                        <h5>Passport Application</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:passport' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Apply For Passport</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
+                        <h5>Birth Certificate</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:birthcert' %}" class="btn btn-sm btn-primary px-3" style="border-radius: 30px;">Apply For BirthCert</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                        <h5>Admission Assistance</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:contact' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Contact us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-cog text-primary mb-4"></i>
+                        <h5>Visa Assistance</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:bookflight' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Ask For Help</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                        <h5>Flight Ticketing</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:bookflight' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Book Flight</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
+                        <h5>Hotel Reservation</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:hotel_reserve' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Book a Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                        <h5>Travel Guides</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:contact' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Contact us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4 text-center">
+                        <i class="fa fa-3x fa-cog text-primary mb-4"></i>
+                        <h5>Available Packages</h5>
+                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <a href="{% url 'main:package' %}" class="btn btn-sm btn-primary" style="border-radius: 30px;">Check</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/acc_style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-light base">
+        <a href="{% url 'main:home' %}" class="navbar-brand p-0">
+            <div class="company-home d-flex align-items-center mx-auto">
+                <img class="logo" src="{% static 'images/logo/afrigil.jpg' %}" alt="Afirgil-Logo">
+                <h1 class="m-0 me-3">Afrigil Consult</h1>
+            </div>
+        </a>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item active d-flex align-items-center">
+                <a href="{% url 'main:home' %}" class="nav-link">Home</a>
+                <a href="{% url 'main:contact' %}" class="nav-link">Contact</a>
+                <a href="{% url 'main:about' %}" class="nav-link">About</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'account:logout' %}" class="nav-link">Logout</a>
+                {% else %}
+                    {% if request.path == '/account/login/' %}
+                        <a href="{% url 'account:signup' %}" class="nav-link">Sign Up</a>
+                    {% elif request.path == '/account/register/' %}
+                        <a href="{% url 'account:login' %}" class="nav-link">Login</a>
+                    {% else %}
+                        <a href="{% url 'account:login' %}" class="nav-link">Login</a>
+                    {% endif %}
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    <script src="{% static 'js/account.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
