@@ -39,8 +39,20 @@ VISA_TYPE = {
 
 VISA_TYPE_CHOICE = [(key, value) for key, value in VISA_TYPE.items()]
 
-class Home(models.Model):
-    pass
+ECONOMY = 'Economy'
+BUSINESS = 'Business'
+FIRST_CLASS = 'First Class'
+CABIN_CLASS_CHOICES = [
+    (ECONOMY, 'Economy'),
+    (BUSINESS, 'Business'),
+    (FIRST_CLASS, 'First Class'),
+]
+ONE_WAY = "OW"
+RETURN = "RT"
+SELECT_TYPE = {
+    (ONE_WAY, "One Way"),
+    (RETURN, "Return Trip"),
+}
 
 COUNTRIES = {
 "Afg": "Afghanistan", "Alb": "Albania", "Alg": "Algeria", "And": "Andorra", 
@@ -91,12 +103,16 @@ COUNTRIES = {
 
 COUNTRY_CHOICE = [(key, value) for key, value in COUNTRIES.items()]
 
+class Home(models.Model):
+    pass
+
 class About(models.Model):
     title = models.CharField(max_length=100, unique=True, blank=False)
     content = models.TextField(max_length=5000, blank=False)
     image = models.ImageField(upload_to="about_images", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     uploaded_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.title
@@ -107,6 +123,7 @@ class Contact(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=155, blank=True)
     message = models.TextField(max_length=500, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -279,6 +296,7 @@ class Passport(models.Model):
     passportonsent = models.ForeignKey(PassportConsent, on_delete=models.CASCADE)
     passportapplication = models.ForeignKey(PassportApplication, on_delete=models.CASCADE)
     witness = models.ForeignKey(Witness, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"{self.applicant.surname} {self.applicant.first_name}"
@@ -309,6 +327,7 @@ class PassportApplicantDetails(models.Model):
     
 
 class VisaProcess(models.Model):
+    full_name = models.CharField(max_length=255, blank=False)
     country = models.CharField(max_length=50, choices=COUNTRY_CHOICE)
     type_of_visa = models.CharField(max_length=50, choices=VISA_TYPE_CHOICE)
     passport_number = models.CharField(max_length=50, blank=False, unique=True)
@@ -316,6 +335,7 @@ class VisaProcess(models.Model):
     bank_statement = models.FileField(upload_to="Visa_process", blank=True)
     itinery = models.FileField(upload_to="Visa_process", blank=True)
     any_support_document = models.FileField(upload_to="Visa_process")
+    created_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -327,27 +347,27 @@ class HotelReservation(models.Model):
     city = models.CharField(max_length=255, blank=False)
     check_in = models.DateField(auto_now=True, blank=False)
     check_out = models.DateField(auto_now=False, blank=False,)
-    number_of_room = models.IntegerField(default=1, blank=False)
     adults = models.IntegerField(default=2)
     children = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.country
 
 
-class socialMediaHandles(models.Model):
+class SocialMediaHandles(models.Model):
     facebook = models.URLField(blank=False, unique=True)
     tiktok = models.URLField(blank=False, unique=True)
     instagram = models.URLField(blank=False, unique=True)
     twitter = models.URLField(blank=False, unique=True)
     youtube = models.URLField(blank=False, unique=True)
-    linkedin = models.URLField(blank=False, unique=True)
+
 
 class ScholarshipLinks(models.Model):
     institute_name = models.CharField(max_length=255, unique=True, null=False)
     country = models.CharField(max_length=100, unique=False, blank=False, choices=COUNTRY_CHOICE)
     state = models.CharField(max_length=100, unique=False, null=False)
-    organized_by = models.CharField(max_length=100, null=False, unique=False)
+    organization = models.CharField(max_length=100, null=False, unique=False)
     image = models.ImageField(upload_to="scholarship_images")
     link = models.URLField()
     created_at = models.DateField(auto_now=True)
@@ -367,27 +387,11 @@ class BirthCertificate(models.Model):
     region = models.CharField(max_length=255, blank=False)
     parent_name = models.CharField(max_length=255, blank=False)
     contact = models.CharField(max_length=15, blank=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class BookFlight(models.Model):
-    ECONOMY = 'Economy'
-    BUSINESS = 'Business'
-    FIRST_CLASS = 'First Class'
-
-    CABIN_CLASS_CHOICES = [
-        (ECONOMY, 'Economy'),
-        (BUSINESS, 'Business'),
-        (FIRST_CLASS, 'First Class'),
-    ]
-
-    ONE_WAY = "OW"
-    RETURN = "RT"
-
-    SELECT_TYPE = {
-        (ONE_WAY, "One Way"),
-        (RETURN, "Return Trip"),
-    }
-    name = models.CharField(max_length=255, blank=False)
+    full_name = models.CharField(max_length=255, blank=False)
     email = models.EmailField()
     departure_date = models.DateField(auto_now=False)
     return_date = models.BooleanField(default=False)
@@ -396,6 +400,7 @@ class BookFlight(models.Model):
     travellers = models.IntegerField(default=1)
     cabin_class = models.CharField(max_length=255, choices=CABIN_CLASS_CHOICES, default="Economy")
     travel_type = models.CharField(max_length=255, choices=SELECT_TYPE, default="One Way")
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def set_return(self):
         if self.travel_type == "Return Trip":
@@ -420,6 +425,7 @@ class PackageBook(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255, blank=False, unique=True)
     contact = models.CharField(max_length=20, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return (self.package.country_name, self.full_name, self.contact)
@@ -431,6 +437,7 @@ class HolidayPlaces(models.Model):
     is_discount = models.BooleanField(default=False)
     discount_percent = models.DecimalField(max_digits=3, decimal_places=2, default=00.00)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def discount_display(self):
@@ -452,6 +459,7 @@ class Guides(models.Model):
     twitter_link = models.URLField()
     instagram_link = models.URLField()
     destination = models.CharField(max_length=120, blank=False, unique=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.full_name
