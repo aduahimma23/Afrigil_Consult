@@ -9,8 +9,8 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('account:login')
+            form.save(commit=False)
+            return redirect('login')
     else:
         form = CustomUserForm()
     

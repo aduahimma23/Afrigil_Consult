@@ -103,6 +103,24 @@ COUNTRIES = {
 
 COUNTRY_CHOICE = [(key, value) for key, value in COUNTRIES.items()]
 
+BIRTH_CERTIFICATE = 'A'
+NATIONAL_ID_CARD = 'B'
+OLD_PASSPORT = 'C'
+VOTER_ID_CARD = 'D'
+DUAL_CITIZENSHIP_CARD = 'E'
+NATURALIZATION_CARD = 'F'
+REGISTRATION_CARD = 'G'
+
+DOCUMENT_CHOICES = [
+    (BIRTH_CERTIFICATE, 'Birth Certificate'),
+    (NATIONAL_ID_CARD, 'National Identity Card'),
+    (OLD_PASSPORT, 'Old Passport'),
+    (VOTER_ID_CARD, 'Voter ID Card'),
+    (DUAL_CITIZENSHIP_CARD, 'Dual Citizenship Card'),
+    (NATURALIZATION_CARD, 'Naturalization Card'),
+    (REGISTRATION_CARD, 'Registration Card'),
+]
+
 class Home(models.Model):
     pass
 
@@ -153,7 +171,6 @@ class Applicant(models.Model):
     surname = models.CharField(max_length=100, blank=False)
     first_name = models.CharField(max_length=100, blank=False)
     other_name = models.CharField(max_length=100, blank=False)
-    maiden_name = models.CharField(max_length=100, blank=False)
     date_of_birth = models.DateField()
     city_of_birth = models.CharField(max_length=100, blank=False)
     country_of_birth = models.CharField(max_length=100, blank=False)
@@ -222,7 +239,6 @@ class Guarantor(models.Model):
     telephone_no = models.CharField(max_length=20)
     occupation = models.CharField(max_length=100)
     email = models.EmailField()
-    signature = models.ImageField(upload_to='signatures/')
     date = models.DateField()
 
 
@@ -230,7 +246,6 @@ class Declaration(models.Model):
     full_name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     telephone_no = models.CharField(max_length=20)
-    signature = models.ImageField(upload_to='declarations/')
     date = models.DateField()
 
 
@@ -238,36 +253,16 @@ class PassportConsent(models.Model):
     full_name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     telephone_no = models.CharField(max_length=20)
-    signature = models.ImageField(upload_to='passport_consents/')
     date = models.DateField()
 
 
 class PassportApplication(models.Model):
     full_name = models.CharField(max_length=100)
     previous_passport_no = models.CharField(max_length=20, blank=True, null=True)
-    signature = models.ImageField(upload_to='passport_applications/')
     date = models.DateField()
 
 
 class Document(models.Model):
-    BIRTH_CERTIFICATE = 'A'
-    NATIONAL_ID_CARD = 'B'
-    OLD_PASSPORT = 'C'
-    VOTER_ID_CARD = 'D'
-    DUAL_CITIZENSHIP_CARD = 'E'
-    NATURALIZATION_CARD = 'F'
-    REGISTRATION_CARD = 'G'
-
-    DOCUMENT_CHOICES = [
-        (BIRTH_CERTIFICATE, 'Birth Certificate'),
-        (NATIONAL_ID_CARD, 'National Identity Card'),
-        (OLD_PASSPORT, 'Old Passport'),
-        (VOTER_ID_CARD, 'Voter ID Card'),
-        (DUAL_CITIZENSHIP_CARD, 'Dual Citizenship Card'),
-        (NATURALIZATION_CARD, 'Naturalization Card'),
-        (REGISTRATION_CARD, 'Registration Card'),
-    ]
-
     document_type = models.CharField(max_length=1, choices=DOCUMENT_CHOICES)
     number = models.CharField(max_length=50, blank=True)
     date_of_issue = models.DateField(null=True, blank=True)
@@ -336,7 +331,6 @@ class VisaProcess(models.Model):
     itinery = models.FileField(upload_to="Visa_process", blank=True)
     any_support_document = models.FileField(upload_to="Visa_process")
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"Country: {self.country} | type of Visa: {self.type_of_visa} | Passport Number: {self.passport_number}"
@@ -345,8 +339,6 @@ class VisaProcess(models.Model):
 class HotelReservation(models.Model):
     country = models.CharField(max_length=255, choices=COUNTRY_CHOICE)
     city = models.CharField(max_length=255, blank=False)
-    check_in = models.DateField(auto_now=True, blank=False)
-    check_out = models.DateField(auto_now=False, blank=False,)
     adults = models.IntegerField(default=2)
     children = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -383,11 +375,15 @@ class BirthCertificate(models.Model):
     date_of_birth = models.DateField(auto_now=False, blank=False)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
     place_of_birth = models.CharField(max_length=255, blank=False)
-    distirct = models.CharField(max_length=100, blank=False)
-    region = models.CharField(max_length=255, blank=False)
-    parent_name = models.CharField(max_length=255, blank=False)
-    contact = models.CharField(max_length=15, blank=False, unique=True)
+    father_name = models.CharField(max_length=255, blank=False)
+    occupation = models.CharField(max_length=15, blank=False, unique=True)
+    religion = models.CharField(max_length=255, blank=False)
+    mother_name = models.CharField(max_length=255, blank=False)
+    ghana_card_number = models.CharField(max_length=255, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Full Name of Applicant: {self.first_name} {self.surname}"
 
 
 class BookFlight(models.Model):

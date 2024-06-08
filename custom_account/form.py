@@ -2,16 +2,15 @@ from django import forms
 from .models import CustomUser
 
 class CustomUserForm(forms.ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput, max_length=100, required=True)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "**************"}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "*************"}), max_length=100, required=True)
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password', 'confirm_password']
+        fields = ['username', 'email', 'password']
         widgets = {
-            'password': forms.PasswordInput(attrs={"placeholder": "**************"}),
-            "confirm_password": forms.PasswordInput(attrs={"placeholder": "*************"}),
-            "username": forms.TextInput(attrs={"placeholder": "Username"}),
-            "email": forms.TextInput(attrs={"placeholder": "afri@gmail.com"})
+            'username': forms.TextInput(attrs={"placeholder": "Username"}),
+            'email': forms.TextInput(attrs={"placeholder": "afri@gmail.com"}),
         }
 
     def clean(self):
@@ -24,3 +23,9 @@ class CustomUserForm(forms.ModelForm):
 
         return cleaned_data
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user

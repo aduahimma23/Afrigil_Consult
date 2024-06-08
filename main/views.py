@@ -40,7 +40,7 @@ def service(request):
 # def birthcert(request):
 #     return render(request, "main/birthcert.html")
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def passport(request):
     if request.method == 'POST':
         applicant_form = ApplicantForm(request.POST)
@@ -91,7 +91,7 @@ def passport(request):
                     'passportapplication_form': passportapplication_form, 'witness_form': witness_form
                 })
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def birthcert(request):
     if request.method == "POST":
         birth_form = BirthCertificateForm(request.POST)
@@ -109,7 +109,7 @@ def birthcert(request):
     
     return render(request, "main/birthcert.html", {"birth_form": birth_form})
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def bookflight(request):
     if request.method == "POST":
         booking_form = BookFlightForm(request.POST)
@@ -132,7 +132,7 @@ def package(request):
 
     return render(request, "main/package.html", {"packages": packages})
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def bookpackage(request):
     if request.method == "POST":
         package_form = PackageBookForm(request.POST)
@@ -149,7 +149,7 @@ def bookpackage(request):
 
     return render(request, "main/book_form.html", {"package_form": package_form})
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def hotel_reserve(request):
     if request.method == "POST":
         hotel_reserve_form = HotelReservationFoorm(request.POST)
@@ -167,7 +167,7 @@ def hotel_reserve(request):
 
     return render(request, "main/hotel_reserve.html", {"hotel_reserve_form": hotel_reserve_form})
 
-@login_required(login_url='/account/login/')
+# @login_required(login_url='/account/login/')
 def scholarship_link(request):
     scholarships = ScholarshipLinks.objects.all()
 

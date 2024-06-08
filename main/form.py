@@ -18,7 +18,6 @@ class ApplicantForm(forms.ModelForm):
             'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ameyaw'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Emmanuel'}),
             'other_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Other Name(Optional)'}),
-            'maiden_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Maiden Name(Optional)'}),
             'date_of_birth': forms.DateInput(attrs={"type": "date", 'class': 'form-control datepicker', 'placeholder': 'dd/mm/yy'}),
             'city_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Accra'}),
             'country_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ghana'}),
@@ -170,17 +169,19 @@ class BirthCertificateForm(forms.ModelForm):
     class Meta:
         model = BirthCertificate
         fields = "__all__"
+
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}),
-            'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your surname'}),
-            'other_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your other names'}),
-            'date_of_birth': forms.TextInput(attrs={"type": "date", 'class': 'form-control datepicker', 'placeholder': 'Enter your date of birth'}),
-            'place_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your place of birth'}),
-            'distirct': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your district'}),
-            'region': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your region'}),
-            'parent_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your parent\'s name'}),
-            'contact': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your contact information'}),
-            'gender': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select your gender'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Surname'}),
+            'other_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Other names (if any)'}),
+            'date_of_birth': forms.TextInput(attrs={"type": "date", 'class': 'form-control datepicker', 'placeholder': 'Date of Birth'}),
+            'place_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'place of birth'}),
+            'gender': forms.Select(attrs={'class': 'form-control'}),
+            'father_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Father's Name"}),
+            'occupation': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teaching'}),
+            'religion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'region'}),
+            'mother_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Mother's Maiden Name"}),
+            "ghana_card_number": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'})
         }
 
 class BookFlightForm(forms.ModelForm):
@@ -189,7 +190,7 @@ class BookFlightForm(forms.ModelForm):
         fields = "__all__"
 
         widgets = {
-            "name": forms.TextInput(attrs={"class": "form-control"}),
+            "full_name": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.TextInput(attrs={"class": "form-control"}),
             "travel_type": forms.Select(attrs={"class": "form-control"}),
             "departure_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
@@ -206,8 +207,8 @@ class PackageBookForm(forms.ModelForm):
         fields = ("full_name", "contact")
 
         widgets = {
-            "full_name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter your name"}),
-            "contact": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter your Preferred contact"}),
+            "full_name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Name"}),
+            "contact": forms.TextInput(attrs={"class": "form-control", "placeholder": "Preferred contact"}),
         }
 
 
@@ -219,9 +220,6 @@ class HotelReservationFoorm(forms.ModelForm):
         widgets = {
             "country": forms.Select(attrs={"class": "form-control"}),
             "city": forms.TextInput(attrs={"class": "form-control"}),
-            "check_in": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "check_out": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "number_of_room": forms.TextInput(attrs={"class": "form-control"}),
             "adults": forms.TextInput(attrs={"class": "form-control"}),
             "children": forms.TextInput(attrs={"class": "form-control"})
         }
