@@ -271,7 +271,7 @@ body{
 .hero-header .breadcrumb-item a:hover {
     color: #25F4EE;
 }
-/* Form section */
+/*Passport Form section */
 form {
     margin-top: 50px;
     justify-content: center;
@@ -307,6 +307,10 @@ button[type="submit"]:hover {
 .applicant-info, .father-info, .mother-info, .grandparent-info, .guarantor-info, 
 .declaration-info, .passportconsent-info, .passportapplication-info, .witness-info, .document-info {
     margin-bottom: 20px;
+}
+
+#phone_number, #email {
+    display: none;
 }
 
 /* Birth Form */

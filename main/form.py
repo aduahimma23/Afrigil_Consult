@@ -52,14 +52,14 @@ class FatherForm(forms.ModelForm):
         model = Father
         fields = '__all__'
         widgets = {
-            'father_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Father\'s Name'}),
-            'living': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Living'}),
+            'father_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "FatherName",}),
+            'living': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Living', "id": "living"}),
             'nationality': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationality'}),
             'postal_address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Postal Address'}),
             'residential_address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Residential Address'}),
             'home_town': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Home Town'}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number', 'id': 'phone_number'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email', "id": "email"}),
         }
 
 

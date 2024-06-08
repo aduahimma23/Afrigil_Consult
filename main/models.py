@@ -142,8 +142,6 @@ class Contact(models.Model):
     subject = models.CharField(max_length=155, blank=True)
     message = models.TextField(max_length=500, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self) -> str:
         return self.name
@@ -153,6 +151,7 @@ class ChangeContact(models.Model):
     office = models.CharField(max_length=1024)
     mobile = models.IntegerField()
     email = models.EmailField()
+    created_at = models.DateField(auto_now=True)
 
     def __str__(self) -> str:
         return self.office
@@ -171,7 +170,7 @@ class Applicant(models.Model):
     surname = models.CharField(max_length=100, blank=False)
     first_name = models.CharField(max_length=100, blank=False)
     other_name = models.CharField(max_length=100, blank=False)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(blank=False)
     city_of_birth = models.CharField(max_length=100, blank=False)
     country_of_birth = models.CharField(max_length=100, blank=False)
     height = models.DecimalField(decimal_places=2, max_digits=5)
@@ -182,8 +181,8 @@ class Applicant(models.Model):
     profession = models.CharField(max_length=3, choices=PROFESSION_CHOICES)
     previous_profession = models.CharField(max_length=1, choices=CHOICE_SELECTION)
     national_ID_no = models.CharField(max_length=20)
-    social_security_number = models.CharField(max_length=20)
-    voters_ID_no = models.CharField(max_length=20)
+    social_security_number = models.CharField(max_length=20, null=True)
+    voters_ID_no = models.CharField(max_length=20, null=True)
     post_code = models.CharField(max_length=20)
     country_of_residence = models.CharField(max_length=50)
     suburb = models.CharField(max_length=50)

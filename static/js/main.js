@@ -109,3 +109,39 @@ document.addEventListener('DOMContentLoaded', function() {
         todayHighlight: true
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var livingField = document.getElementById('living');
+    var phoneNumberField = document.getElementById('phone_number').parentElement;
+    var emailField = document.getElementById('email').parentElement;
+
+    function toggleFields() {
+        if (livingField.value === 'Yes') {
+            phoneNumberField.style.display = '';
+            emailField.style.display = '';
+        } else {
+            phoneNumberField.style.display = 'none';
+            emailField.style.display = 'none';
+        }
+    }
+
+    livingField.addEventListener('change', toggleFields);
+
+    toggleFields();
+});
+
+function logout() {
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "{% url 'account:logout' %}";
+    
+    var csrf_token = document.createElement("input");
+    csrf_token.setAttribute("type", "hidden");
+    csrf_token.setAttribute("name", "csrfmiddlewaretoken");
+    csrf_token.value = "{{ csrf_token }}";
+    
+    form.appendChild(csrf_token);
+    document.body.appendChild(form);
+    
+    form.submit();
+}

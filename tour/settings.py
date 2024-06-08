@@ -45,6 +45,7 @@ AUTH_USER_MODEL = 'custom_account.CustomUser'
 LOGIN_URL = 'account:login'
 LOGOUT_REDIRECT_URL = 'main:home'
 LOGIN_REDIRECT_URL = 'main:home'
+LOGOUT_REDIRECT_URL = "login"
 
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
