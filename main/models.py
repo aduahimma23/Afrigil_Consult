@@ -353,18 +353,36 @@ class SocialMediaHandles(models.Model):
     twitter = models.URLField(blank=False, unique=True)
     youtube = models.URLField(blank=False, unique=True)
 
+class EligibleCountry(models.Model):
+    name = models.CharField(max_length=100, unique=True)
 
+    def __str__(self):
+        return self.name
+
+class ScholarshipBenefit(models.Model):
+    description = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.description
+
+class EligibleCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+    
 class ScholarshipLinks(models.Model):
-    institute_name = models.CharField(max_length=255, unique=True, null=False)
-    country = models.CharField(max_length=100, unique=False, blank=False, choices=COUNTRY_CHOICE)
-    state = models.CharField(max_length=100, unique=False, null=False)
-    organization = models.CharField(max_length=100, null=False, unique=False)
-    image = models.ImageField(upload_to="scholarship_images")
+    title = models.CharField(max_length=255, blank=False, unique=True)
+    host_country = models.CharField(max_length=100, unique=False, blank=False, choices=COUNTRY_CHOICE)
+    eligible_countries = models.ManyToManyField(EligibleCountry)
+    eligible_categories = models.ManyToManyField(EligibleCategory)
+    benefits = models.ManyToManyField(ScholarshipBenefit)
     link = models.URLField()
+    deadline = models.DateField()
     created_at = models.DateField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.institute_name
+        return f"{self.host_country}: {self.deadline}"
     
 
 class BirthCertificate(models.Model):

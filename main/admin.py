@@ -32,9 +32,23 @@ class PassportApplicantDetailsAdmin(admin.ModelAdmin):
 
 @admin.register(ScholarshipLinks)
 class ScholarshipLinksAdmin(admin.ModelAdmin):
-    list_display = ("country", "state", "institute_name",  "organization")
-    search_fields = ("institute_name", "country", "state", "organization")
-    list_editable = ("institute_name", "organization")
+    list_display = ("host_country", "deadline")
+    search_fields = ("host_country", "deadline",)
+
+@admin.register(EligibleCountry)
+class EligibleCountryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+@admin.register(ScholarshipBenefit)
+class ScholarshipBenefitAdmin(admin.ModelAdmin):
+    list_display = ('description',)
+    search_fields = ('description',)
+
+@admin.register(EligibleCategory)
+class EligibleCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 @admin.register(BirthCertificate)
 class BirthCertificateAdmin(admin.ModelAdmin):

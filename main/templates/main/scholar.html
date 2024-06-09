@@ -1,67 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarship Links</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .card {
-            margin-bottom: 20px;
-        }
-        .card img {
-            height: 200px;
-            object-fit: cover;
-        }
-        .scholar-btn{
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-            border: 2px solid #69C9D0;
-        }
-        .scholar-btn a{
-            text-decoration: none;
-        }
-        
-        .large-icon{
-            font-size: 20px;
-            color: blue;
-        }
-    </style>
-</head>
-<body>
+{% extends "main/base.html" %}
+{% block title %}Scholarship{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
     <div class="container py-5">
-        <button class="scholar-btn">
-            <i class="fa-solid fa-house large-icon"></i>
-            <a class="" href="{% url 'main:home' %}">Home</a>
-        </button>
-        <h1 class="text-center mb-5">Scholarship Links</h1>
-        <div class="row">
-            {% for scholarship in scholarships %}
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="{{ scholarship.image.url }}" class="card-img-top" alt="{{ scholarship.institute_name }}">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white">Afrigil Consult >> Scholarships</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Scholarship</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Scholarship Listings</h1>
+    <div class="accordion" id="scholarshipAccordion">
+        {% for scholarship in scholarships %}
+            <div class="card">
+                <div class="card-header" id="heading-{{ forloop.counter0 }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapse-{{ forloop.counter0 }}">
+                            {{ scholarship.title }} - Host Country: {{ scholarship.host_country }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse-{{ forloop.counter0 }}" class="collapse" aria-labelledby="heading-{{ forloop.counter0 }}" data-parent="#scholarshipAccordion">
                     <div class="card-body">
-                        <h5 class="card-title">{{ scholarship.institute_name }}</h5>
-                        <p class="card-text">
-                            <strong>Country:</strong> {{ scholarship.get_country_display }}<br>
-                            <strong>State:</strong> {{ scholarship.state }}<br>
-                            <strong>Organized By:</strong> {{ scholarship.organized_by }}
-                        </p>
-                        <a href="{{ scholarship.link }}" class="btn btn-primary" target="_blank">Learn More</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Created at: {{ scholarship.created_at }}
+                        <div class="field">
+                            <h3>Eligible Countries:</h3>
+                            <ul class="list-group">
+                                {% for country in scholarship.eligible_countries.all %}
+                                    <li class="list-group-item">{{ country }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="field">
+                            <h3>Eligible Categories:</h3>
+                            <ul class="list-group">
+                                {% for category in scholarship.eligible_categories.all %}
+                                    <li class="list-group-item">{{ category }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="field">
+                            <h3>Benefits:</h3>
+                            <ul class="list-group">
+                                {% for benefit in scholarship.benefits.all %}
+                                    <li class="list-group-item">{{ benefit }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="field">
+                            <h3>Application Link:</h3>
+                            <p><a href="{{ scholarship.link }}" target="_blank" class="btn btn-primary">Apply Here</a></p>
+                        </div>
+                        <div class="field">
+                            <h3>Application Deadline:</h3>
+                            <p>{{ scholarship.deadline }}</p>
+                        </div>
+                        <div class="field">
+                            <h3>Date Created:</h3>
+                            <p>{{ scholarship.created_at }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}

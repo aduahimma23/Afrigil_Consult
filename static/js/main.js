@@ -145,3 +145,13 @@ function logout() {
     
     form.submit();
 }
+
+// scholarship
+function toggleDetails(index) {
+    var details = document.getElementById('details-' + index);
+    if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'block';
+    } else {
+        details.style.display = 'none';
+    }
+}

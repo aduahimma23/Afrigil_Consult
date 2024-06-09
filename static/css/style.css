@@ -619,3 +619,14 @@ button[type="submit"]:hover {
     background-color: #69C9D0;
     margin: auto;
 }
+
+/* Scholarship CSS */
+.field h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.field p {
+    font-size: 16px;
+    color: #333;
+}

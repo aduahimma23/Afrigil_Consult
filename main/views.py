@@ -149,7 +149,7 @@ def bookpackage(request):
 
     return render(request, "main/book_form.html", {"package_form": package_form})
 
-# @login_required(login_url='/account/login/')
+@login_required(login_url='/account/login/')
 def hotel_reserve(request):
     if request.method == "POST":
         hotel_reserve_form = HotelReservationFoorm(request.POST)
