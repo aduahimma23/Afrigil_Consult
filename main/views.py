@@ -1,44 +1,66 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .models import *
 from .form import *
 
+def base(request):
+    change_contact = ChangeContact.objects.first()
+    social_media = SocialMediaHandle.objects.first()
+
+    if request.method == "POST":
+        news_form = NewsletterSubscriptionForm(request.POST)
+        try:
+            if news_form.is_valid():
+                news_form.save()
+                messages.success(request, 'You have successfully signed up for the newsletter.')
+                return redirect('newsletter_signup')
+            else:
+                messages.error(request, 'There was an error with your submission. Please try again.')
+        except Exception as err:
+            messages.error(request, f"An error occured {err}")
+    else:
+        news_form = NewsletterSubscriptionForm()
+
+    return render(request, "main/base.html", {"change_contact": change_contact, "social_media": social_media, "news_form": news_form})
 
 def home(request):
     holiday_places = HolidayPlaces.objects.all()[:4]
-    scholarships  = ScholarshipLinks.objects.all()[:10]
-    guides = Guides.objects.all()
+    scholarships  = ScholarshipLink.objects.all()[:5]
+    guides = Guide.objects.all()
+    packages = Package.objects.all()
+    destinations = Destination.objects.all()[:6]
+   
+
     return render(request, "main/index.html", {"holiday_places": holiday_places, "guides": guides,
-                                                "scholarship": scholarships
-                                                })
+                        "scholarships": scholarships, "packages": packages, "destinations": destinations, 
+                        })
 
 def contact(request):
     change_contact = ChangeContact.objects.first()
-    try:
-        if request.method == "POST":
-            form = ContactForm(request.POST)
-            if form.is_valid:
-                form.save()
+
+    if request.method == "POST":
+        contact_form = ContactForm(request.POST)
+        try:
+            if contact_form.is_valid():
+                contact_form.save()
                 messages.success(request, 'Your message has been sent successfully.')
                 return redirect("contact")
-        else:
-            form = ContactForm
-    except Exception as err:
-        messages.error(request, f"An error occured {err}")
-        form = ContactForm
+            else:
+                messages.error(request, 'There was an error in your form. Please correct the errors below.')
+        except Exception as err:
+            messages.error(request, f"An error occured {err}")
+    else:
+            contact_form = ContactForm()
 
-    return render(request, "main/contact.html", {"form": form, "change_contact": change_contact})
+    return render(request, "main/contact.html", {"contact_form": contact_form, "change_contact": change_contact})
 
 def about(request):
     return render(request, "main/about.html")
 
 def service(request):
     return render(request, "main/service.html", )
-
-# @login_required("account:login")
-# def birthcert(request):
-#     return render(request, "main/birthcert.html")
 
 # @login_required(login_url='/account/login/')
 def passport(request):
@@ -58,16 +80,17 @@ def passport(request):
             guarantor_form.is_valid(), declaration_form.is_valid(), passportconsent_form.is_valid(), 
             passportapplication_form.is_valid(), witness_form.is_valid(), document_form.is_valid()
         ]):
-            applicant_form.save()
-            father_form.save()
-            mother_form.save()
-            grandparent_form.save()
-            guarantor_form.save()
-            declaration_form.save()
-            passportconsent_form.save()
-            passportapplication_form.save()
-            witness_form.save()
-            document_form.save()
+            applicant_form.save(commit=False)
+            father_form.save(commit=False)
+            mother_form.save(commit=False)
+            grandparent_form.save(commit=False)
+            guarantor_form.save(commit=False)
+            declaration_form.save(commit=False)
+            passportconsent_form.save(commit=False)
+            passportapplication_form.save(commit=False)
+            witness_form.save(commit=False)
+            document_form.save(commit=False)
+
             messages.success("Application Submitted")
             return redirect('success_url')
         
@@ -97,7 +120,7 @@ def birthcert(request):
         birth_form = BirthCertificateForm(request.POST)
         try:
             if birth_form.is_valid():
-                birth_form.save()
+                birth_form.save(commit=False)
                 messages.success(request, "Form submitted successfully")
                 return redirect("success_url")
             else:
@@ -169,6 +192,7 @@ def hotel_reserve(request):
 
 # @login_required(login_url='/account/login/')
 def scholarship_link(request):
-    scholarships = ScholarshipLinks.objects.all()
+    current_time = timezone.now().date()
+    scholarships = ScholarshipLink.objects.filter(deadline__gte=current_time)
 
-    return render(request, "main/scholar.html", {"scholarship": scholarships})
+    return render(request, "main/scholar.html", {"scholarships": scholarships})

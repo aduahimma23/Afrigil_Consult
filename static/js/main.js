@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Date picker initialization
     $('.datepicker').datepicker({
-        format: yy-mm-dd,
+        format: 'yy-mm-dd',
         autoclose: true,
         todayHighlight: true
     });
@@ -112,22 +112,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     var livingField = document.getElementById('living');
-    var phoneNumberField = document.getElementById('phone_number').parentElement;
-    var emailField = document.getElementById('email').parentElement;
+    var phoneNumberField = document.getElementById('phone_number');
+    var emailField = document.getElementById('email');
 
-    function toggleFields() {
-        if (livingField.value === 'Yes') {
-            phoneNumberField.style.display = '';
-            emailField.style.display = '';
-        } else {
-            phoneNumberField.style.display = 'none';
-            emailField.style.display = 'none';
+    if (phoneNumberField && emailField) { // Check if elements exist
+        phoneNumberField = phoneNumberField.parentElement;
+        emailField = emailField.parentElement;
+
+        function toggleFields() {
+            if (livingField.value === 'Yes') {
+                phoneNumberField.style.display = '';
+                emailField.style.display = '';
+            } else {
+                phoneNumberField.style.display = 'none';
+                emailField.style.display = 'none';
+            }
         }
+
+        livingField.addEventListener('change', toggleFields);
+
+        toggleFields();
+    } else {
+        console.error("Elements with IDs 'phone_number' and 'email' not found.");
     }
-
-    livingField.addEventListener('change', toggleFields);
-
-    toggleFields();
 });
 
 function logout() {

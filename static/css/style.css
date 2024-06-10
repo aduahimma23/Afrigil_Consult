@@ -183,6 +183,7 @@ body{
     border: 3px solid #028391;
     border-radius: 50%;
 }
+
 /* Social media */
 .social-links {
     display: flex;
@@ -232,12 +233,14 @@ body{
     background: -webkit-linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .social-links a.tiktok {
     border-color: #FE2C55;
     background: -webkit-linear-gradient(45deg, #FE2C55, #25F4EE, #69C9D0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
 /*** Hero Header ***/
@@ -398,9 +401,9 @@ button[type="submit"]:hover {
     background-position: center;
 }
 
-/* .service-item * {
-    transition: .5s;
-} */
+.service-btn{
+    border-radius: 30px;
+}
 
 .service-item .service-img{
     height: 300px;
@@ -420,6 +423,13 @@ button[type="submit"]:hover {
     transform: scale(1.1);
 }
 
+.position-relative .bottom-center {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 5px 10px;
+}
 
 /*** Package ***/
 .package-item {

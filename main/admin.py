@@ -30,7 +30,7 @@ class PassportApplicantDetailsAdmin(admin.ModelAdmin):
     list_display = ['applicant_name', 'father_name', 'mother_name', 'guarantor_name', 'witness_name', 'date_created']
     search_fields = ['applicant__first_name', 'applicant__surname', 'father__father_name', 'mother__mother_name', 'guarantor__full_name', 'witness__full_name', 'date_created']
 
-@admin.register(ScholarshipLinks)
+@admin.register(ScholarshipLink)
 class ScholarshipLinksAdmin(admin.ModelAdmin):
     list_display = ("host_country", "deadline")
     search_fields = ("host_country", "deadline",)
@@ -74,7 +74,7 @@ class SocialMediaHandlesAdmin(admin.ModelAdmin):
         self.list_editable = [field for field in self.list_display if field != self.list_display[0]]
         super(SocialMediaHandlesAdmin, self).__init__(model, admin_site)
 
-admin.site.register(SocialMediaHandles, SocialMediaHandlesAdmin)
+admin.site.register(SocialMediaHandle, SocialMediaHandlesAdmin)
 
 @admin.register(BookFlight)
 class BookFlightAdmin(admin.ModelAdmin):
@@ -82,7 +82,7 @@ class BookFlightAdmin(admin.ModelAdmin):
     search_fields = ("name", "destination", "travel_type")
     list_editable = ("destination", "return_date", "departure_date", "travel_type")
 
-@admin.register(Guides)
+@admin.register(Guide)
 class GuidesAdmin(admin.ModelAdmin):
     list_display = ( "created_at", "full_name", "destination")
     search_fields = ("full_name", "destination")

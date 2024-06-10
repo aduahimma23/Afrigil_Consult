@@ -4,6 +4,7 @@ from django.urls import path
 app_name = "main"
 
 urlpatterns = [
+    path("base/", base),
     path("home", home, name="home"),
     path("about/", about, name="about"),
     path("contact/", contact, name="contact"),
@@ -14,5 +15,5 @@ urlpatterns = [
     path("package/", package, name="package"),
     path("bookpackage/", bookpackage, name="bookpackage"),
     path("hotel_reserve/", hotel_reserve, name="hotel_reserve"),
-    path("scholarship_link/", scholarship_link, name="scholar")
+    path("scholarships/", scholarship_link, name="scholar")
 ]

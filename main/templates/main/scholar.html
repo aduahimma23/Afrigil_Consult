@@ -8,13 +8,6 @@
         <div class="row justify-content-center py-5">
             <div class="col-lg-10 text-center">
                 <h1 class="display-3 text-white">Afrigil Consult >> Scholarships</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Scholarship</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div>
@@ -27,7 +20,8 @@
             <div class="card">
                 <div class="card-header" id="heading-{{ forloop.counter0 }}">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapse-{{ forloop.counter0 }}">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ forloop.counter0 }}" 
+                            aria-expanded="true" aria-controls="collapse-{{ forloop.counter0 }}">
                             {{ scholarship.title }} - Host Country: {{ scholarship.host_country }}
                         </button>
                     </h2>
@@ -60,7 +54,7 @@
                         </div>
                         <div class="field">
                             <h3>Application Link:</h3>
-                            <p><a href="{{ scholarship.link }}" target="_blank" class="btn btn-primary">Apply Here</a></p>
+                            <p><a href="{{ scholarship.link }}" target="_blank" class="btn btn-primary service-btn">Apply Here</a></p>
                         </div>
                         <div class="field">
                             <h3>Application Deadline:</h3>

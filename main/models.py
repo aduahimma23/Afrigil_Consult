@@ -42,63 +42,57 @@ VISA_TYPE_CHOICE = [(key, value) for key, value in VISA_TYPE.items()]
 ECONOMY = 'Economy'
 BUSINESS = 'Business'
 FIRST_CLASS = 'First Class'
-CABIN_CLASS_CHOICES = [
-    (ECONOMY, 'Economy'),
-    (BUSINESS, 'Business'),
-    (FIRST_CLASS, 'First Class'),
-]
+CABIN_CLASS_CHOICES = [(ECONOMY, 'Economy'), (BUSINESS, 'Business'), (FIRST_CLASS, 'First Class'),]
+
 ONE_WAY = "OW"
 RETURN = "RT"
-SELECT_TYPE = {
-    (ONE_WAY, "One Way"),
-    (RETURN, "Return Trip"),
-}
+SELECT_TYPE = [(ONE_WAY, "One Way"), (RETURN, "Return Trip"),]
 
 COUNTRIES = {
-"Afg": "Afghanistan", "Alb": "Albania", "Alg": "Algeria", "And": "Andorra", 
-"Ang": "Angola", "Ant-b": "Antigua and Barbuda", "Arg": "Argentina",
-"Armenia" : "Yerevan", "Australia" : "Canberra", "Austria" : "Vienna", "Azerbaijan" : "Baku",
-"The Bahamas" : "Nassau", "Bahrain" : "Manama", "Bangladesh" : "Dhaka", "Barbados" : "Bridgetown",
-"Belarus" : "Minsk", "Belgium" : "Brussels", "Belize" : "Belmopan", "Benin" : "Porto-Novo",
-"Bhutan" : "Thimphu", "Bolivia" : "La Paz, Sucre", "Bosnia and Herzegovina" : "Sarajevo",
-"Botswana" : "Gaborone", "Brazil" : "Brasilia", "Brunei" : "Bandar Seri Begawan", "Bulgaria" : "Sofia",
-"Burkina Faso" : "Ouagadougou", "Burundi" : "Bujumbura", "Cambodia" : "Phnom Penh", "Cameroon" : "Yaounde",
-"Canada" : "Ottawa", "Cape Verde" : "Praia", "Central African Republic" : "Bangui", "Chad" : "N’Djamena",
-"Chile" : "Santiago", "China" : "Beijing", "Colombia" : "Bogota", "Comoros" : "Moroni", "Republic of the Congo": "Brazzaville",
-"Democratic Republic of the Congo" : "Kinshasa", "Costa Rica" : "San Jose", "Cote d’Ivoire" : "Yamoussoukro",
-"Croatia" : "Zagreb", "Cuba" : "Havana", "Cyprus" : "Nicosia", "Czech Republic" : "Prague", "Denmark" : "Copenhagen",
-"Djibouti" : "Djibouti", "Dominica" : "Roseau", "Dominican Republic" : "Santo Domingo", "East Timor" : "Dili",
-"Ecuador" : "Quito", "Egypt" : "Cairo", "El Salvador" : "San Salvador", "Equatorial Guinea" : "Malabo",
-"Eritrea" : "Asmara", "Estonia" : "Tallinn", "Ethiopia" : "Addis Ababa", "Fiji" : "Suva", "Finland" : "Helsinki",
-"France" : "Paris", "Gabon" : "Libreville", "The Gambia" : "Banjul", "Georgia" : "Tbilisi", "Germany" : "Berlin",
-"Ghana" : "Accra", "Greece" : "Athens", "Grenada" : "Saint George’s", "Guatemala" : "Guatemala City",
-"Guinea" : "Conakry", "Guinea-Bissau" : "Bissau", "Guyana" : "Georgetown", "Haiti" : "Port-au-Prince",
-"Honduras" : "Tegucigalpa", "Hungary" : "Budapest", "Iceland" : "Reykjavik", "India" : "New Delhi",
-"Indonesia" : "Jakarta", "Iran" : "Tehran", "Iraq" : "Baghdad", "Ireland" : "Dublin", "Israel" : "Jerusalem",
-"Italy" : "Rome", "Jamaica" : "Kingston", "Japan" : "Tokyo", "Jordan" : "Amman", "Kazakhstan" : "Astana",
-"Kenya" : "Nairobi", "Kiribati" : "Tarawa Atoll", "North Korea" : "Pyongyang", "South Korea" : "Seoul",
-"Kosovo" : "Pristina", "Kuwait" : "Kuwait City", "Kyrgyzstan" : "Bishkek", "Laos" : "Vientiane", "Latvia" : "Riga",
-"Lebanon" : "Beirut", "Lesotho" : "Maseru", "Liberia" : "Monrovia", "Libya" : "Tripoli", "Liechtenstein" : "Vaduz",
-"Lithuania" : "Vilnius", "Luxembourg" : "Luxembourg", "Macedonia" : "Skopje", "Madagascar" : "Antananarivo", "Malawi" : "Lilongwe",
-"Malaysia" : "Kuala Lumpur", "Maldives" : "Male", "Mali" : "Bamako", "Malta" : "Valletta", "Marshall Islands" : "Majuro",
-"Mauritania" : "Nouakchott", "Mauritius" : "Port Louis", "Mexico" : "Mexico City", "Federated States of Micronesia" : "Palikir",
-"Moldova" : "Chisinau", "Monaco" : "Monaco", "Mongolia" : "Ulaanbaatar", "Montenegro" : "Podgorica", "Morocco" : "Rabat",
-"Mozambique" : "Maputo", "Myanmar" : "Naypyidaw", "Namibia" : "Windhoek", "Nauru" : "Yaren District", "Nepal" : "Kathmandu",
-"Netherlands" : "Amsterdam", "New Zealand" : "Wellington", "Nicaragua" : "Managua", "Niger" : "Niamey", "Nigeria" : "Abuja",
-"Norway" : "Oslo", "Oman" : "Muscat", "Pakistan" : "Islamabad", "Palau" : "Melekeok", "Panama" : "Panama City",
-"Papua New Guinea" : "Port Moresby", "Paraguay" : "Asuncion", "Peru" : "Lima", "Philippines" : "Manila", "Poland" : "Warsaw",
-"Portugal" : "Lisbon", "Qatar" : "Doha", "Romania" : "Bucharest", "Russia" : "Moscow", "Rwanda" : "Kigali", "Saint Kitts and Nevis" : "Basseterre",
-"Saint Lucia" : "Castries", "Saint Vincent and the Grenadines" : "Kingstown", "Samoa" : "Apia", "San Marino" : "San Marino",
-"Sao Tome and Principe" : "Sao Tome", "Saudi Arabia" : "Riyadh", "Senegal" : "Dakar", "Serbia" : "Belgrade", "Seychelles" : "Victoria",
-"Sierra Leone" : "Freetown", "Singapore" : "Singapore", "Slovakia" : "Bratislava", "Slovenia" : "Ljubljana", "Solomon Islands" : "Honiara",
-"Somalia" : "Mogadishu", "South Africa" : "Pretoria, Cape Town, Bloemfontein", "South Sudan" : "Juba", "Spain" : "Madrid",
-"Sri Lanka" : "Colombo, Sri Jayewardenepura Kotte", "Sudan" : "Khartoum", "Suriname" : "Paramaribo", "Swaziland" : "Mbabane",
-"Sweden" : "Stockholm", "Switzerland" : "Bern", "Syria" : "Damascus",  "Taiwan" : "Taipei", "Tajikistan" : "Dushanbe",
-"Tanzania" : "Dodoma", "Thailand" : "Bangkok", "Togo" : "Lome", "Tonga" : "Nuku’alofa", "Trinidad and Tobago" : "Port-of-Spain",
-"Tunisia" : "Tunis", "Turkey" : "Ankara", "Turkmenistan" : "Ashgabat", "Tuvalu" : "Funafuti", "Uganda" : "Kampala",
-"Ukraine" : "Kyiv", "United Arab Emirates" : "Abu Dhabi", "United Kingdom" : "London", "United States of America" : "Washington D.C.",
-"Uruguay" : "Montevideo", "Uzbekistan" : "Tashkent", "Vanuatu" : "Port-Vila", "Vatican City" : "Vatican City", "Venezuela" : "Caracas",
-"Vietnam" : "Hanoi", "Yemen" : "Sanaa", "Zambia" : "Lusaka", "Zimbabwe" : "Harare"
+"Afghanistan": "Afghanistan", "Albania": "Albania", "Algeria": "Algeria", "Andorra": "Andorra", 
+"Angola": "Angola", "Antigua and Barbuda": "Antigua and Barbuda", "Argentina": "Argentina",
+"Armenia": "Armenia", "Australia": "Australia", "Austria": "Austria", "Azerbaijan": "Azerbaijan",
+"The Bahamas": "The Bahamas", "Bahrain": "Bahrain", "Bangladesh": "Bangladesh", "Barbados": "Barbados",
+"Belarus": "Belarus", "Belgium": "Belgium", "Belize": "Belize", "Benin": "Benin",
+"Bhutan": "Thimphu", "Bolivia": "La Paz, Sucre", "Bosnia and Herzegovina": "Sarajevo",
+"Botswana": "Botswana", "Brazil": "Brazil", "Brunei": "Brunei", "Bulgaria": "Bulgaria",
+"Burkina Faso": "Burkina Faso", "Burundi": "Burundi", "Cambodia": "Cambodia", "Cameroon": "Cameroon",
+"Canada": "Canada", "Cape Verde": "Cape Verde", "Central African Republic": "Central African Republic", "Chad": "Chad",
+"Chile": "Chile", "China": "China", "Colombia": "Colombia", "Comoros": "Comoros", "Republic of the Congo": "Republic of the Congo",
+"Democratic Republic of the Congo": "Democratic Republic of the Congo", "Costa Rica": "Costa Rica", "Cote d Ivoire": "Cote d Ivoire",
+"Croatia": "Croatia", "Cuba": "Cuba", "Cyprus": "Cyprus", "Czech Republic": "Czech Republic", "Denmark": "Denmark",
+"Djibouti": "Djibouti", "Dominica": "Dominica", "Dominican Republic": "Dominican Republic", "East Timor": "East Timor",
+"Ecuador": "Ecuador", "Egypt": "Egypt", "El Salvador": "El Salvador", "Equatorial Guinea": "Equatorial Guinea",
+"Eritrea": "Eritrea", "Estonia": "Estonia", "Ethiopia": "Ethiopia", "Fiji": "Fiji", "Finland": "Finland",
+"France": "France", "Gabon": "Gabon", "The Gambia": "The Gambia", "Georgia": "Georgia", "Germany": "Germany",
+"Ghana": "Ghana", "Greece": "Greece", "Grenada": "Grenada", "Guatemala": "Guatemala",
+"Guinea": "Guinea", "Guinea-Bissau": "Guinea-Bissau", "Guyana": "Guyana", "Haiti": "Haiti",
+"Honduras": "Honduras", "Hungary": "Hungary", "Iceland": "Iceland", "India": "India",
+"Indonesia": "Indonesia", "Iran": "Iran", "Iraq": "Iraq", "Ireland": "Ireland", "Israel": "Israel",
+"Italy": "Italy", "Jamaica": "Jamaica", "Japan": "Japan", "Jordan": "Jordan", "Kazakhstan": "Kazakhstan",
+"Kenya": "Kenya", "Kiribati": "Kiribati", "North Korea": "North Korea", "South Korea": "South Korea",
+"Kosovo": "Kosovo", "Kuwait": "Kuwait", "Kyrgyzstan": "Kyrgyzstan", "Laos": "Laos", "Latvia": "Latvia",
+"Lebanon": "Beirut", "Lesotho": "Maseru", "Liberia": "Monrovia", "Libya": "Tripoli", "Liechtenstein": "Vaduz",
+"Lithuania": "Lithuania", "Luxembourg": "Luxembourg", "Macedonia": "Macedonia", "Madagascar": "Madagascar", "Malawi": "Malawi",
+"Malaysia": "Malaysia", "Maldives": "Maldives", "Mali": "Mali", "Malta": "Malta", "Marshall Islands": "Marshall Islands",
+"Mauritania": "Mauritania", "Mauritius": "Mauritius", "Mexico": "Mexico", "Federated States of Micronesia": "Federated States of Micronesia",
+"Moldova": "Moldova", "Mongolia": "Mongolia", "Montenegro": "Montenegro", "Morocco": "Morocco",
+"Mozambique": "Mozambique", "Myanmar": "Myanmar", "Namibia": "Namibia", "Nauru": "Nauru", "Nepal": "Nepal",
+"Netherlands": "Netherlands", "New Zealand": "New Zealand", "Nicaragua": "Nicaragua", "Niger": "Niger", "Nigeria": "Nigeria",
+"Norway": "Norway", "Oman": "Oman", "Pakistan": "Pakistan", "Panama": "Panama","Papua New Guinea": "Papua New Guinea", "Paraguay": "Paraguay",
+"Peru": "Peru", "Philippines": "Philippines", "Poland": "Poland", "Portugal": "Portugal", "Qatar": "Qatar", "Romania": "Romania",
+"Russia": "Moscow", "Rwanda": "Kigali", "Saint Kitts and Nevis": "Basseterre", "Saint Lucia": "Castries", 
+"Saint Vincent and the Grenadines": "Saint Vincent and the Grenadines", "Samoa": "Samoa", "San Marino": "San Marino",
+"Sao Tome and Principe": "Sao Tome", "Saudi Arabia": "Riyadh", "Senegal": "Dakar", "Serbia": "Belgrade", "Seychelles": "Victoria",
+"Sierra Leone": "Sierra Leone", "Singapore": "Singapore", "Slovakia": "Slovakia", "Slovenia": "Slovenia", "Solomon Islands": "Solomon Islands",
+"Somalia": "Somalia", "South Africa": "South Africa", "South Sudan": "South Sudan", "Spain": "Spain",
+"Sri Lanka": "Sri Lanka", "Sudan": "Sudan", "Suriname": "Suriname", "Swaziland": "Swaziland",
+"Sweden": "Sweden", "Switzerland": "Switzerland", "Syria": "Syria",  "Taiwan": "Taiwan", "Tajikistan": "Tajikistan",
+"Tanzania": "Tanzania", "Thailand": "Thailand", "Togo": "Togo", "Tonga": "Tonga", "Trinidad and Tobago": "Trinidad and Tobago",
+"Tunisia": "Tunisia", "Turkey": "Turkey", "Turkmenistan": "Turkmenistan", "Uganda": "Uganda",
+"Ukraine": "Kyiv", "United Arab Emirates": "Abu Dhabi", "United Kingdom": "London", "United States of America": "United States of America",
+"Uruguay": "Uruguay", "Uzbekistan": "Uzbekistan", "Vanuatu": "Vanuatu", "Vatican City": "Vatican City", "Venezuela": "Venezuela",
+"Vietnam": "Vietnam", "Yemen": "Yemen", "Zambia": "Zambia", "Zimbabwe": "Zimbabwe"
 }
 
 COUNTRY_CHOICE = [(key, value) for key, value in COUNTRIES.items()]
@@ -125,11 +119,9 @@ class Home(models.Model):
     pass
 
 class About(models.Model):
-    title = models.CharField(max_length=100, unique=True, blank=False)
+    title = models.CharField(max_length=100, unique=True, blank=True)
     content = models.TextField(max_length=5000, blank=False)
     image = models.ImageField(upload_to="about_images", blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    uploaded_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -144,7 +136,7 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.subject
 
 
 class ChangeContact(models.Model):
@@ -276,7 +268,6 @@ class Witness(models.Model):
     business_phone_no = models.CharField(max_length=20)
     residential_address = models.CharField(max_length=255)
     residential_phone_no = models.CharField(max_length=20)
-    signature = models.ImageField(upload_to='witness_signatures/')
     date = models.DateField()
 
     
@@ -346,12 +337,13 @@ class HotelReservation(models.Model):
         return self.country
 
 
-class SocialMediaHandles(models.Model):
+class SocialMediaHandle(models.Model):
     facebook = models.URLField(blank=False, unique=True)
     tiktok = models.URLField(blank=False, unique=True)
     instagram = models.URLField(blank=False, unique=True)
     twitter = models.URLField(blank=False, unique=True)
     youtube = models.URLField(blank=False, unique=True)
+
 
 class EligibleCountry(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -370,8 +362,9 @@ class EligibleCategory(models.Model):
 
     def __str__(self):
         return self.name
-    
-class ScholarshipLinks(models.Model):
+
+
+class ScholarshipLink(models.Model):
     title = models.CharField(max_length=255, blank=False, unique=True)
     host_country = models.CharField(max_length=100, unique=False, blank=False, choices=COUNTRY_CHOICE)
     eligible_countries = models.ManyToManyField(EligibleCountry)
@@ -400,7 +393,7 @@ class BirthCertificate(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f"Full Name of Applicant: {self.first_name} {self.surname}"
+        return f"Name of Applicant: {self.first_name} {self.surname}"
 
 
 class BookFlight(models.Model):
@@ -420,7 +413,7 @@ class BookFlight(models.Model):
             self.return_date = models.DateField(auto_now=False)
         
     def __str__(self) -> str:
-        return self.name
+        return self.full_name
 
 class Package(models.Model):
     country_name = models.CharField(max_length=255, unique=False, blank=False, choices=COUNTRY_CHOICE)
@@ -452,20 +445,18 @@ class HolidayPlaces(models.Model):
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def discount_display(self):
-        if self.is_discount:
-            discount_amount = self.cost * (self.discount_percent / 100)
-            discounted_cost = self.cost - discount_amount
-            return f"Discount: {self.discount_percent}% | Discounted Cost: {discounted_cost}"
-        else:
-            return "Discount: 0%"
-
     def __str__(self):
         return f"{self.city}, {self.country} - {self.discount_display}"
 
+class Destination(models.Model):
+    image = models.ImageField(upload_to="destianation_images", blank=False, unique=True)
+    country = models.CharField(max_length=120, blank=False, unique=False)
+    content = models.CharField(max_length=255, blank=True)
 
-class Guides(models.Model):
+    def __str__(self) -> str:
+        return self.country
+
+class Guide(models.Model):
     full_name = models.CharField(max_length=120, blank=False, unique=True)
     image = models.ImageField(upload_to="guides_images", unique=True, blank=False)
     facebook_link = models.URLField()
@@ -476,3 +467,11 @@ class Guides(models.Model):
 
     def __str__(self) -> str:
         return self.full_name
+    
+
+class NewsletterSubscription(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email

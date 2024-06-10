@@ -2,13 +2,34 @@ from django import forms
 from .models import (Contact, Applicant, Father, Mother, GrandParent, Guarantor, 
                      Declaration, PassportConsent, PassportApplication, Witness,
                      VisaProcess, BirthCertificate, Document, BookFlight, PackageBook,
-                    HotelReservation
+                    HotelReservation, NewsletterSubscription
                     )
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
+            'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Subject'}),
+            'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Leave a message here', 'rows': 4}),
+        }
+
+
+class NewsletterSubscriptionForm(forms.ModelForm):
+    class Meta:
+        model = NewsletterSubscription
+        fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control border-primary py-3 ps-4',
+                'placeholder': 'Your email',
+                'style': 'flex: 1;',
+            }),
+        }
+
 
 class ApplicantForm(forms.ModelForm):
     class Meta:
