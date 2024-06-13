@@ -319,7 +319,7 @@ class VisaProcess(models.Model):
     passport_picture = models.ImageField(upload_to="Visa_process", blank=True)
     bank_statement = models.FileField(upload_to="Visa_process", blank=True)
     itinery = models.FileField(upload_to="Visa_process", blank=True)
-    any_support_document = models.FileField(upload_to="Visa_process")
+    any_support_document = models.FileField(upload_to="Visa_process", null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

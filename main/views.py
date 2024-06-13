@@ -62,6 +62,11 @@ def about(request):
 def service(request):
     return render(request, "main/service.html", )
 
+def destination(request):
+    destinations = Destination.objects.all()
+
+    return render(request, "main/destination.html", {"destinations": destinations})
+
 # @login_required(login_url='/account/login/')
 def passport(request):
     if request.method == 'POST':
@@ -166,7 +171,7 @@ def bookpackage(request):
                 return redirect("success_url")
             
         except Exception as e:
-            messages.error(request, "Check the form")
+            messages.error(request, f"Check the form{e}")
     else:
         package_form = PackageBookForm()
 
@@ -196,3 +201,21 @@ def scholarship_link(request):
     scholarships = ScholarshipLink.objects.filter(deadline__gte=current_time)
 
     return render(request, "main/scholar.html", {"scholarships": scholarships})
+
+
+def visa_process(request):
+    if request.method == "POST":
+        visa_form = VisaProcessForm(request.POST, request.FILES)
+        try:
+            if visa_form.is_valid():
+                visa_form.save(commit=False)
+                messages.success(request, "Form successfully submitted")
+                return redirect("home/")
+            else:
+                messages.error(request, "Check the form and try again")
+        except Exception as err:
+            messages.error(request, f"Fill all the fields{err}")
+    else:
+        visa_form = VisaProcessForm()
+
+    return render(request, "main/visa_process.html", {"visa_form": visa_form})

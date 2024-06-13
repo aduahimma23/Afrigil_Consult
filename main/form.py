@@ -38,7 +38,7 @@ class ApplicantForm(forms.ModelForm):
         widgets = {
             'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ameyaw'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Emmanuel'}),
-            'other_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Other Name(Optional)'}),
+            'other_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Optional'}),
             'date_of_birth': forms.DateInput(attrs={"type": "date", 'class': 'form-control datepicker', 'placeholder': 'dd/mm/yy'}),
             'city_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Accra'}),
             'country_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ghana'}),
@@ -243,4 +243,24 @@ class HotelReservationFoorm(forms.ModelForm):
             "city": forms.TextInput(attrs={"class": "form-control"}),
             "adults": forms.TextInput(attrs={"class": "form-control"}),
             "children": forms.TextInput(attrs={"class": "form-control"})
+        }
+
+
+class VisaProcessForm(forms.ModelForm):
+    class Meta:
+        model = VisaProcess
+        fields = [
+            "full_name", "country", "type_of_visa", "passport_number", 
+            "passport_picture", "bank_statement", "itinery", "any_support_document"
+        ]
+
+        widgets = {
+            "full_name": forms.TextInput(attrs={"class": "form-control", }),
+            "country": forms.Select(attrs={"class": "form-control"}),
+            "type_of_visa": forms.Select(attrs={"class": "form-control"}),
+            "passport_number": forms.TextInput(attrs={"class": "form-control", }),
+            "passport_picture": forms.FileInput(attrs={"class": "form-control", }),
+            "bank_statement": forms.FileInput(attrs={"class": "form-control", }),
+            "itinery": forms.FileInput(attrs={"class": "form-control", }),
+            "any_support_document": forms.FileInput(attrs={"class": "form-control", }),
         }

@@ -15,5 +15,7 @@ urlpatterns = [
     path("package/", package, name="package"),
     path("bookpackage/", bookpackage, name="bookpackage"),
     path("hotel_reserve/", hotel_reserve, name="hotel_reserve"),
-    path("scholarships/", scholarship_link, name="scholar")
+    path("scholarships/", scholarship_link, name="scholar"),
+    path("visa_process/", visa_process, name="visa_process"),
+    path("destination/", destination, name="destination")
 ]

@@ -94,17 +94,17 @@
 
 // Data Picker
 document.addEventListener('DOMContentLoaded', function() {
-    var selectIputs = document.querySelectorAll("select");
-    selectIputs.forEach(function (selectIput) {
-        var firstOption = selectIput.querySelector('option');
-        if (firstOption.value == ''){
+    var selectInputs = document.querySelectorAll("select.form-control");
+    selectInputs.forEach(function(selectInput) {
+        var firstOption = selectInput.querySelector('option');
+        if (firstOption.value === '') {
             firstOption.textContent = "Select";
         }
     });
-    
+
     // Date picker initialization
     $('.datepicker').datepicker({
-        format: 'yy-mm-dd',
+        format: 'yyyy-mm-dd',
         autoclose: true,
         todayHighlight: true
     });
