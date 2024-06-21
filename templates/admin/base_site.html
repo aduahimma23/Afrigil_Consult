@@ -1,11 +1,17 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Afrigil Consults') }}{% endblock %}
+{% load i18n %}
+
+{% block title %}
+    Admin Panel | Afrigil Consults
+{% endblock %}
 
 {% block branding %}
 <div id="site-name"><a href="{% url 'admin:index' %}">Afrigil Consults</a></div>
-{% if user.is_anonymous %}
-  {% include "admin/color_theme_toggle.html" %}
+{% if user.is_authenticated %}
+  <div id="user-tools">
+    <a href="{% url 'admin-logout' %}">{% trans 'Log out' %}</a>
+  </div>
 {% endif %}
 {% endblock %}
 
