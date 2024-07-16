@@ -301,64 +301,68 @@
         <h6 class="section-title bg-white text-center text-primary px-3">Scholarship</h6>
         <h1 class="mb-5">Scholarship Listings</h1>
     </div>
-    <div class="accordion" id="scholarshipAccordion">
-        {% for scholarship in scholarships %}
-            <div class="card">
-                <div class="card-header" id="heading-{{ forloop.counter0 }}">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapse-{{ forloop.counter0 }}">
-                            {{ scholarship.title }} - Host Country: {{ scholarship.host_country }}
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapse-{{ forloop.counter0 }}" class="collapse" aria-labelledby="heading-{{ forloop.counter0 }}" data-parent="#scholarshipAccordion">
-                    <div class="card-body">
-                        <div class="field">
-                            <h3>Eligible Countries:</h3>
-                            <ul class="list-group">
-                                {% for country in scholarship.eligible_countries.all %}
-                                    <li class="list-group-item">{{ country }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="field">
-                            <h3>Eligible Categories:</h3>
-                            <ul class="list-group">
-                                {% for category in scholarship.eligible_categories.all %}
-                                    <li class="list-group-item">{{ category }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="field">
-                            <h3>Benefits:</h3>
-                            <ul class="list-group">
-                                {% for benefit in scholarship.benefits.all %}
-                                    <li class="list-group-item">{{ benefit }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="field">
-                            <h3>Application Link:</h3>
-                            <p><a href="{{ scholarship.link }}" target="_blank" class="btn btn-primary service-btn">Apply Here</a></p>
-                        </div>
-                        <div class="field">
-                            <h3>Application Deadline:</h3>
-                            <p>{{ scholarship.deadline }}</p>
-                        </div>
-                        <div class="field">
-                            <h3>Date Created:</h3>
-                            <p>{{ scholarship.created_at }}</p>
+    {% if scholarships %}
+        <div class="accordion" id="scholarshipAccordion">
+            {% for scholarship in scholarships %}
+                <div class="card">
+                    <div class="card-header" id="heading-{{ forloop.counter0 }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{ forloop.counter0 }}" aria-expanded="true" aria-controls="collapse-{{ forloop.counter0 }}">
+                                {{ scholarship.title }} - Host Country: {{ scholarship.host_country }}
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapse-{{ forloop.counter0 }}" class="collapse" aria-labelledby="heading-{{ forloop.counter0 }}" data-parent="#scholarshipAccordion">
+                        <div class="card-body">
+                            <div class="field">
+                                <h3>Eligible Countries:</h3>
+                                <ul class="list-group">
+                                    {% for country in scholarship.eligible_countries.all %}
+                                        <li class="list-group-item">{{ country }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="field">
+                                <h3>Eligible Categories:</h3>
+                                <ul class="list-group">
+                                    {% for category in scholarship.eligible_categories.all %}
+                                        <li class="list-group-item">{{ category }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="field">
+                                <h3>Benefits:</h3>
+                                <ul class="list-group">
+                                    {% for benefit in scholarship.benefits.all %}
+                                        <li class="list-group-item">{{ benefit }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="field">
+                                <h3>Application Link:</h3>
+                                <p><a href="{{ scholarship.link }}" target="_blank" class="btn btn-primary service-btn">Apply Here</a></p>
+                            </div>
+                            <div class="field">
+                                <h3>Application Deadline:</h3>
+                                <p>{{ scholarship.deadline }}</p>
+                            </div>
+                            <div class="field">
+                                <h3>Date Created:</h3>
+                                <p>{{ scholarship.created_at }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-    <div class="text-center">
-        <button class="btn btn-lg">
-            <a href="{% url 'main:scholar' %}">See More scholarship oppotunities</a>
-        </button>
-    </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'main:scholar' %}" class="btn btn-lg btn-primary">See More Scholarship Opportunities</a>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <p>No link posted.</p>
+        </div>
+    {% endif %}
 </div>
 
 <div class="container-xxl py-5">
@@ -416,54 +420,6 @@
                 <div class="team-item">
                     <div class="overflow-hidden">
                         <img class="img-fluid" src="{% static 'images/main/team-1.jpg' %}" alt="">
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0">Full Name</h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-wow-delay="0.3s">
-                <div class="team-item">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{% static 'images/main/team-2.jpg' %}" alt="">
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0">Full Name</h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-wow-delay="0.5s">
-                <div class="team-item">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{% static 'images/main/team-3.jpg' %}" alt="">
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0">Full Name</h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-wow-delay="0.7s">
-                <div class="team-item">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{% static 'images/main/team-4.jpg' %}" alt="">
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
                         <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
